@@ -39,7 +39,7 @@ public class Calculator extends Application {
 	final static int HEIGHT = 50; // height of the window for white board
 	final static int LINUX_MENU_BAR = 50; // account for menu bar on linux systems
 	public static TextField operand = new TextField(); // Operand textview on the scene
-	public WhiteBoard hello; // initialize white board which the user can write digits on
+	public WhiteBoard whiteBoard; // initialize white board which the user can write digits on
 	private Set<Character> operation = new HashSet<Character>(Arrays.asList('+', '-', '*', '/'));
 	private Set<Character> number = new HashSet<Character>(
 			Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
@@ -53,14 +53,14 @@ public class Calculator extends Application {
 	}
 
 	/**
-	 * Start function, create a scene and calls add_button function. Then let the
-	 * stage show.
+	 * Start function, create a scene and calls add_button function. 
+	 * 
 	 */
 	public void start(Stage applicationStage) throws Exception {
 
 		scene = new Scene(rootpane, 240, 308, Color.BLACK);
-		applicationStage.setTitle("Handwritten Calculator");
-		add_button();
+		applicationStage.setTitle("Handwriting Recognition Calculator");
+		addButton();
 		applicationStage.setScene(scene);
 		applicationStage.show();
 	}
@@ -69,14 +69,14 @@ public class Calculator extends Application {
 	 * Add all the buttons and textviews onto the scene. Add actions for all the
 	 * buttons.
 	 */
-	public void add_button() {
+	public void addButton() {
 
-		Label operand_title = new Label("Operand:");
-		operand_title.setPrefSize(80, 40);
+		Label operandTitle = new Label("Operand:");
+		operandTitle.setPrefSize(80, 40);
 		operand.setPrefSize(160, 40);
 
-		Label result_title = new Label("Result:");
-		result_title.setPrefSize(80, 40);
+		Label resultTitle = new Label("Result:");
+		resultTitle.setPrefSize(80, 40);
 		TextField result = new TextField();
 		result.setPrefSize(160, 40);
 
@@ -159,7 +159,7 @@ public class Calculator extends Application {
 		pointButton.setPrefSize(60, 40);
 		pointButton.setOnAction(e -> {
 			if (startWrite && processPre == false) {
-				hello.create_img_array();
+				whiteBoard.createImageArray();
 				processPre = true;
 			}
 			String pre = operand.getText();
@@ -182,8 +182,7 @@ public class Calculator extends Application {
 			// if the user chooses to write digits and the previous handwritten digits has
 			// not been processed
 			if (startWrite && processPre == false) {
-				System.out.println("hello.create_img_array();");
-				hello.create_img_array();
+				whiteBoard.createImageArray();
 				processPre = true;
 			}
 			String pre = operand.getText();
@@ -200,7 +199,7 @@ public class Calculator extends Application {
 		subtractButton.setPrefSize(60, 40);
 		subtractButton.setOnAction(e -> {
 			if (startWrite && processPre == false) {
-				hello.create_img_array();
+				whiteBoard.createImageArray();
 				processPre = true;
 			}
 			String pre = operand.getText();
@@ -217,7 +216,7 @@ public class Calculator extends Application {
 		multiplyButton.setPrefSize(60, 40);
 		multiplyButton.setOnAction(e -> {
 			if (startWrite && processPre == false) {
-				hello.create_img_array();
+				whiteBoard.createImageArray();
 				processPre = true;
 			}
 			String pre = operand.getText();
@@ -234,7 +233,7 @@ public class Calculator extends Application {
 		divideButton.setPrefSize(60, 40);
 		divideButton.setOnAction(e -> {
 			if (startWrite && processPre == false) {
-				hello.create_img_array();
+				whiteBoard.createImageArray();
 				processPre = true;
 			}
 			String pre = operand.getText();
@@ -251,7 +250,7 @@ public class Calculator extends Application {
 		operandButton.setPrefSize(60, 40);
 		operandButton.setOnAction(e -> {
 			if (startWrite && processPre == false) {
-				hello.create_img_array();
+				whiteBoard.createImageArray();
 				processPre = true;
 			}
 			s = operand.getText();
@@ -259,12 +258,12 @@ public class Calculator extends Application {
 				Alert alert = new Alert(AlertType.ERROR, "Cannot end up with an operation");
 				alert.showAndWait();
 			}
-			GetResult final_result = new GetResult(s);
-			if (final_result.final_result.equals("Infinity")) {
+			GetResult finalResult = new GetResult(s);
+			if (finalResult.finalResult.equals("Infinity")) {
 				Alert alert = new Alert(AlertType.ERROR, "Divide by zero!");
 				alert.showAndWait();
 			}
-			result.setText(final_result.final_result);
+			result.setText(finalResult.finalResult);
 		});
 		Button delButton = new Button("Del");
 		delButton.setPrefSize(60, 40);
@@ -293,7 +292,7 @@ public class Calculator extends Application {
 		rightkuohaoButton.setPrefSize(60, 40);
 		rightkuohaoButton.setOnAction(e -> {
 			if (startWrite && processPre == false) {
-				hello.create_img_array();
+				whiteBoard.createImageArray();
 				processPre = true;
 			}
 			String pre = operand.getText();
@@ -311,9 +310,9 @@ public class Calculator extends Application {
 		pane1.setPadding(gridPadding); // Set padding around grid
 		pane1.setHgap(10); // Spacing between columns
 		pane1.setVgap(10);
-		pane1.add(operand_title, 0, 0);
+		pane1.add(operandTitle, 0, 0);
 		pane1.add(operand, 1, 0);
-		pane1.add(result_title, 0, 1);
+		pane1.add(resultTitle, 0, 1);
 		pane1.add(result, 1, 1);
 
 		GridPane pane2 = new GridPane();
@@ -343,8 +342,8 @@ public class Calculator extends Application {
 
 		addimag.setPrefSize(240, 60);
 		addimag.setOnAction(e -> {
-			hello = new WhiteBoard();
-			hello.startController(WIDTH, HEIGHT + LINUX_MENU_BAR);
+			whiteBoard = new WhiteBoard();
+			whiteBoard.startController(WIDTH, HEIGHT + LINUX_MENU_BAR);
 			startWrite = true;
 		});
 
