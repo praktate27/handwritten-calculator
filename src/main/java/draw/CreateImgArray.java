@@ -14,18 +14,18 @@ public class CreateImgArray {
  * which recognize the handwritten digits, and returns the label into the variable result
  */
 
-	public CreateImgArray(int[][] new_img_array) {
-		String img_array = "";
+	public CreateImgArray(int[][] newImgArray) {
+		String imgArray = "";
 
-		for (int i=0; i<new_img_array.length; i++) {
-			for (int j=0; j<new_img_array[i].length; j++) {
-				img_array+=Integer.toString(new_img_array[i][j]);
-				img_array+=" ";
+		for (int i=0; i<newImgArray.length; i++) {
+			for (int j=0; j<newImgArray[i].length; j++) {
+				imgArray+=Integer.toString(newImgArray[i][j]);
+				imgArray+=" ";
 			}
 		}
 		
 		// call Run_python
-		RunPython rp = new RunPython(img_array);	
+		RunPython rp = new RunPython(imgArray);	
 		String result = rp.run();
 		System.out.print(result);
 		// add the label on to the screen

@@ -13,7 +13,6 @@ import java.io.InputStreamReader;
 
 /**
  * About: This class is to run the python file and get its result. 
- * I created this class learning from online resources
  * IMPORTANT: If you want to run this program on your personal computer, 
  * you need to change the path to where you save the python file
  */
@@ -27,7 +26,7 @@ public class RunPython {
 	 
 	        try {	             
 	            // Using terminal to run python file 
-	            Process p = Runtime.getRuntime().exec("python /Users/liuxiyun/Dropbox/handwritten_recognition.py "+img_array_str);
+	            Process p = Runtime.getRuntime().exec("python /Users/prachi/git/handwritten-calculator/handwriting_recognition.py "+img_array_str);
 	             
 	            BufferedReader Input = new BufferedReader(new
 	                 InputStreamReader(p.getInputStream()));

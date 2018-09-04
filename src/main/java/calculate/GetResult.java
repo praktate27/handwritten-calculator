@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
-/**
- * Do the calculation!
- */
 public class GetResult {
 
 	private ArrayList<String> list = new ArrayList<String>();
